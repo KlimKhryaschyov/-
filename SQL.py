@@ -3,11 +3,11 @@
 #Нужно проверить, отображается ли созданный заказ в базе данных
 #Для этого: вывеcти список логинов курьеров с количеством их заказов в статусе «В доставке» (поле inDelivery = true).
 
-SELECT c.login, COUNT(o.id) AS "deliveryCount"
-FROM "Couriers" AS c
-LEFT JOIN "Orders" AS o ON c.id = o."courierId"
-WHERE o."inDelivery" = true
-GROUP BY c.login;
+SELECT "Couriers".login, COUNT("Orders"."inDelivery")
+FROM "Couriers"
+INNER JOIN "Orders" ON "Couriers".id="Orders"."courierId"
+WHERE "Orders"."inDelivery"=true
+GROUP by "Couriers".login;
 
 #Нужно убедиться, что в базе данных статусы заказов записываются корректно.
 #Для этого: выведи все трекеры заказов и их статусы.
